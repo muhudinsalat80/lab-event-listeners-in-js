@@ -1,52 +1,48 @@
-// Handle Button Clicks
 
-// Function to change the background color when a button is clicked
 function changeBackgroundColor() {
-  // Implement the function to change background color
+ var red = Math.floor(Math.random() * 256)
+  var green = Math.floor(Math.random() * 256)
+  var blue = Math.floor(Math.random() * 256)
+
+
+  document.body.style.backgroundColor =
+    'rgb(' + red + ', ' + green + ', ' + blue + ')'
 }
 
-// Function to reset the background color when the body is double-clicked
+
 function resetBackgroundColor() {
-  // Implement the function to reset background color
+  document.body.style.backgroundColor = ''
 }
 
-// Capture Keyboard Input
 
-// Function to display the key pressed by the user
 function displayKeyPress(event) {
-  // Implement the function to display key pressed
+  var display = document.getElementById('keyPressDisplay')
+  display.textContent = 'Key pressed: ' + event.key
 }
 
-// Process Text Input
-
-// Function to display user input in real-time
 function displayUserInput() {
-  // Implement the function to display user input
+  var input = document.getElementById('textInput').value
+  var display = document.getElementById('textInputDisplay')
+
+  display.textContent = 'You typed: ' + input
 }
 
-// Attach Event Listeners
+
 function setupEventListeners() {
-// Attach event listener to change background color when the button is clicked
-  document
-    .getElementById('changeColorButton')
-    .addEventListener('click', changeBackgroundColor)
+  var changeButton = document.getElementById('changeColorButton')
+  var resetButton = document.getElementById('resetColorButton')
+  var textInput = document.getElementById('textInput')
 
-  // Attach event listener to reset background color when the body is double-clicked
-  document
-    .getElementById('resetColorButton')
-    .addEventListener('dblclick', resetBackgroundColor)
+  changeButton.addEventListener('click', changeBackgroundColor)
+  resetButton.addEventListener('dblclick', resetBackgroundColor)
 
-  // Attach event listener to display key pressed when a key is pressed down
   document.addEventListener('keydown', displayKeyPress)
-
-  // Attach event listener to display user input in real-time as they type
-  document.getElementById('textInput').addEventListener('input', displayUserInput)
+  textInput.addEventListener('input', displayUserInput)
 }
 
-// Initialize event listeners when the DOM is loaded
-if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', setupEventListeners)
-}
+document.addEventListener('DOMContentLoaded', setupEventListeners)
+
+
 
 module.exports = {
   changeBackgroundColor,
